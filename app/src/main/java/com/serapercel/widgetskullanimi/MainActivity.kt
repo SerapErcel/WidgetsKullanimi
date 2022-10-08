@@ -1,12 +1,18 @@
 package com.serapercel.widgetskullanimi
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
+import android.widget.Toast
+import androidx.annotation.ColorRes
+import com.google.android.material.snackbar.Snackbar
 import com.serapercel.widgetskullanimi.databinding.ActivityMainBinding
 import java.util.Calendar
 
@@ -118,6 +124,16 @@ class MainActivity : AppCompatActivity() {
             dp.show()
         }
 
+        val ulkeler = ArrayList<String>()
+        ulkeler.add("Türkiye")
+        ulkeler.add("İtalya")
+        ulkeler.add("Japonya")
+
+        // Spinner
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, ulkeler)
+        binding.spinner.adapter = adapter
+
         binding.butonGoster.setOnClickListener {
             Log.e("widgets", "Switch durum : ${binding.switch1.isChecked}")
             Log.e("widgets", "Kotlin durum : ${binding.checkBoxKotlin.isChecked}")
@@ -125,7 +141,45 @@ class MainActivity : AppCompatActivity() {
             Log.e("widgets", "Barcelona durum : ${binding.radioButtonBarcelona.isChecked}")
             Log.e("widgets", "Real Madrid durum : ${binding.radioButtonRealMadrid.isChecked}")
             Log.e("widgets", "Slider durum : ${binding.slider.progress}")
+            Log.e("widgets", "Spinner durum : ${ulkeler.get(binding.spinner.selectedItemPosition)}")
 
+        }
+
+        // Toast Message (eski yapi)
+        binding.buttonToast.setOnClickListener {
+            Toast.makeText(this, "Merhaba", Toast.LENGTH_LONG).show()
+        }
+
+        // SnackBar Message (guncel kullanilan yapi)
+        binding.buttonSnackBar.setOnClickListener {
+            Snackbar.make(it, "Silmek istiyor musunuz?", Snackbar.LENGTH_SHORT)
+                .setAction("Evet") {
+                    Snackbar.make(it, "Silindi", Snackbar.LENGTH_SHORT)
+                        .setTextColor(Color.BLUE)
+                        .setBackgroundTint(Color.WHITE)
+                        .show()
+                }
+                .setActionTextColor(Color.RED)
+                .setTextColor(Color.BLUE)
+                .setBackgroundTint(Color.WHITE)
+                .show()
+        }
+
+        // Alert Dialog
+        binding.buttonAlert.setOnClickListener {
+            val ad = AlertDialog.Builder(this)
+            ad.setTitle("Başlık")
+            ad.setMessage("İçerik")
+            ad.setIcon(R.drawable.resim1)
+
+            ad.setPositiveButton("Tamam"){s,d ->
+                Toast.makeText(this, "Tamam Seçildi", Toast.LENGTH_LONG).show()
+            }
+            ad.setNegativeButton("İptal"){s,d ->
+                Toast.makeText(this, "İptal Seçildi", Toast.LENGTH_LONG).show()
+            }
+
+            ad.create().show()
         }
     }
 }
