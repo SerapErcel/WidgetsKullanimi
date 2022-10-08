@@ -60,4 +60,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxKotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Kotlin"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxJava"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+    <CheckBox
+        android:id="@+id/checkBoxJava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Java"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxKotlin"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxKotlin">
+
+        <RadioButton
+            android:id="@+id/radioButtonBarcelona"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Barcelona" />
+
+        <RadioButton
+            android:id="@+id/radioButtonRealMadrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RealMadrid" />
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
